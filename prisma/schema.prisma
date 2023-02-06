@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id        String     @id @default(uuid())
+  firstname String
+  lastname  String
+  username  String     @unique
+  email     String     @unique
+  password  String
+  photo     String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime?  @updatedAt
+  Posts     Posts[]
+  Comments  Comments[]
+
+  @@index([firstname, lastname, username, email])
+}
+
+model Posts {
+  id       String     @id @default(uuid())
+  title    String
+  content  String
+  photo    String?
+  author   Users      @relation(fields: [usersId], references: [id])
+  usersId  String
+  Comments Comments[]
+
+  @@index([title])
+}
+
+model Comments {
+  id      String @id @default(uuid())
+  content String
+  author  Users  @relation(fields: [usersId], references: [id])
+  usersId String
+  post    Posts  @relation(fields: [postsId], references: [id])
+  postsId String
+}
+
+model RefreshTokens {
+  id    String @id @default(uuid())
+  token String @unique
+
+  @@index([token])
+}
