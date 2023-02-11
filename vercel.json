@@ -2,5 +2,5 @@
   "version": 2,
   "name": "musicc",
   "builds": [{ "src": "/src/app.ts", "use": "@vercel/node" }],
-  "rewrites": [{ "source": "/src/(.*)", "destination": "/src/app.ts" }]
+  "routes": [{ "src": "/src/(.*)", "dest": "/src/" }]
 }
