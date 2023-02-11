@@ -22,5 +22,6 @@ app.use("/someSong/:filename",(req:Request,res:Response)=>{
   streamMedia(req,res,"audio",req.params.filename);
 })
 
+app.use("/",(req:Request,res:Response)=>{res.send("Server running")});
 // listening to the req on the PORT
 app.listen(PORT,()=>{ console.log(`Server running at http://localhost:${PORT}`); });
