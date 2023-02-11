@@ -21,6 +21,5 @@ app.use(express.json())
 app.use("/api/auth", api.auth);
 app.use("/api/users", api.users);
 
-app.use("/",(req:Request,res:Response)=>{res.send("Server running")});
 // listening to the req on the PORT
 app.listen(PORT,()=>{ console.log(`Server running at http://localhost:${PORT}`); });
