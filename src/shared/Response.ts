@@ -33,7 +33,7 @@ export class CResponse {
 export function sendResponse(response: Response, payload: CResponse) {
   const status: number = payload.status;
 
-  if ("data" in payload || "message" in payload || "error" in payload) response.status(status).json({ ...payload, status: undefined });
+  if ("data" in payload || "message" in payload || "error" in payload) response.status(status).json({ ...payload, ...payload.data, data:undefined, status: undefined });
   else response.sendStatus(status);
 }
 

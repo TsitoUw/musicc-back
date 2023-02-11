@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,29 +8,30 @@ datasource db {
 }
 
 model Users {
-  id        String     @id @default(uuid())
-  firstname String
-  lastname  String
-  username  String     @unique
-  email     String     @unique
-  password  String
-  photo     String
-  createdAt DateTime   @default(now())
-  updatedAt DateTime?  @updatedAt
-  Posts     Posts[]
-  Comments  Comments[]
+  id         String     @id @default(uuid())
+  artistname String
+  username   String     @unique
+  name       String?
+  email      String     @unique
+  password   String
+  photo      String?
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime?  @updatedAt
+  songs      Songs[]
+  comments   Comments[]
 
-  @@index([firstname, lastname, username, email])
+  @@index([name, artistname, username, email])
 }
 
-model Posts {
-  id       String     @id @default(uuid())
-  title    String
-  content  String
-  photo    String?
-  author   Users      @relation(fields: [usersId], references: [id])
-  usersId  String
-  Comments Comments[]
+model Songs {
+  id         String     @id @default(uuid())
+  title      String
+  desciption String?
+  photo      String?
+  song       String
+  artist     Users      @relation(fields: [usersId], references: [id])
+  usersId    String
+  comments   Comments[]
 
   @@index([title])
 }
@@ -43,13 +41,12 @@ model Comments {
   content String
   author  Users  @relation(fields: [usersId], references: [id])
   usersId String
-  post    Posts  @relation(fields: [postsId], references: [id])
-  postsId String
+  song    Songs  @relation(fields: [songId], references: [id])
+  songId  String
 }
 
 model RefreshTokens {
-  id    String @id @default(uuid())
-  token String @unique
+  token String @id @unique
 
   @@index([token])
 }
