@@ -1,9 +1,9 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import api from "./api";
 
-import { Prisma, PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 // using environnement variable (.env)
@@ -16,6 +16,8 @@ const app = express()
 
 app.use(cors());
 app.use(express.json())
+
+app.use("/",(req:Request,res:Response)=>{res.send("Server running")})
 
 app.use("/api/auth", api.auth);
 app.use("/api/users", api.users);
