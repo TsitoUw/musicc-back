@@ -2,7 +2,7 @@ node_modules
 # Keep environment variables out of version control
 .env
 .vscode
-
+/public
 # the migration_lock file should be included but we dont need the migrations to be pushed
 /prisma/migrations/*
 !/prisma/migrations/migration_lock.toml
