@@ -27,7 +27,7 @@ model Songs {
   id         String     @id @default(uuid())
   title      String
   desciption String?
-  photo      String?
+  artwork    String?
   song       String
   artist     Users      @relation(fields: [usersId], references: [id])
   usersId    String
