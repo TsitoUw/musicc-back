@@ -1,6 +1,6 @@
 import { CResponse, STATUS_CODES } from "../../shared/Response"
 import { PrismaClient } from "@prisma/client";
-import { isEmail, isValidString } from "../../shared/validation";
+import { isValidString } from "../../shared/validation";
 import { LoginDto } from "./auth.dto";
 import Jwt, { Secret } from "jsonwebtoken"; "jsonwebtoken"
 import bcrypt from "bcrypt";

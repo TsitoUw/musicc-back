@@ -17,21 +17,24 @@ model Users {
   photo      String?
   createdAt  DateTime   @default(now())
   updatedAt  DateTime?  @updatedAt
-  songs      Songs[]
+  songs      Songs[]    @relation("owning")
+  favorites  Songs[]
   comments   Comments[]
 
   @@index([name, artistname, username, email])
 }
 
 model Songs {
-  id         String     @id @default(uuid())
-  title      String
-  desciption String?
-  artwork    String?
-  song       String
-  artist     Users      @relation(fields: [usersId], references: [id])
-  usersId    String
-  comments   Comments[]
+  id          String     @id @default(uuid())
+  title       String
+  desciption  String?
+  artwork     String?
+  song        String
+  releaseDate DateTime   @default(now())
+  artist      Users      @relation(name: "owning", fields: [artistId], references: [id])
+  artistId    String
+  favoritedBy Users[]
+  comments    Comments[]
 
   @@index([title])
 }
