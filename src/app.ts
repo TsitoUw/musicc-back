@@ -2,8 +2,6 @@ import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import api from "./api";
-import { streamMedia } from "./shared/streamMedia";
-import path from "path";
 import checkPublicDir from "../check";
 
 // using environnement variable (.env)
@@ -22,11 +20,7 @@ app.use(express.static('public'))
 
 app.use("/api/auth", api.auth);
 app.use("/api/users", api.users);
-app.use("/someSong/:filename",(req:Request,res:Response)=>{
-  streamMedia(req,res,"audio",req.params.filename);
-})
-
-
+app.use("/api/songs", api.songs);
 
 // listening to the req on the PORT
 app.listen(PORT, () => { console.log(`Server running at http://localhost:${PORT}`);  }) 
