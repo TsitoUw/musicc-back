@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import api from "./api";
 import { streamMedia } from "./shared/streamMedia";
+import path from "path";
+import checkPublicDir from "../check";
 
 // using environnement variable (.env)
 dotenv.config()
@@ -11,6 +13,8 @@ dotenv.config()
 const PORT: number = parseInt(process.env.PORT as string) || 8000;
 
 const app = express()
+
+checkPublicDir();
 
 app.use(cors());
 app.use(express.json())
@@ -21,6 +25,7 @@ app.use("/api/users", api.users);
 app.use("/someSong/:filename",(req:Request,res:Response)=>{
   streamMedia(req,res,"audio",req.params.filename);
 })
+
 
 
 // listening to the req on the PORT
