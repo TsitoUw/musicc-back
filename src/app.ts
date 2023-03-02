@@ -8,7 +8,7 @@ import checkPublicDir from "../check";
 dotenv.config()
 
 // setting port 
-const PORT: number = parseInt(process.env.PORT as string) || 8000;
+const PORT: number = Number(process.env.PORT as string) || 8001;
 
 const app = express()
 
