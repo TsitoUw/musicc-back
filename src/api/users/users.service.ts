@@ -49,7 +49,7 @@ export async function signup(body: Request["body"]) {
     })
   } catch (error) {
     if (error instanceof PrismaClientKnownRequestError) return new CResponse(STATUS_CODES.BAD_REQUEST, error)
-    return new CResponse(STATUS_CODES.INTERNAL_SERVER_ERROR);
+    return new CResponse(STATUS_CODES.INTERNAL_SERVER_ERROR, error);
   }
 
   return new CResponse(STATUS_CODES.CREATED, { user });

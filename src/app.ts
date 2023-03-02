@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import api from "./api";
-import checkPublicDir from "../check";
+import checkPublicDir from "../check"
 
 // using environnement variable (.env)
 dotenv.config()
@@ -23,4 +23,4 @@ app.use("/api/users", api.users);
 app.use("/api/songs", api.songs);
 
 // listening to the req on the PORT
-app.listen(PORT, () => { console.log(`Server running at http://localhost:${PORT}`);  }) 
+app.listen(PORT,()=>{ console.log(`Server running at http://localhost:${PORT}`); });
