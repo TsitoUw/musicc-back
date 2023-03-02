@@ -73,12 +73,14 @@ export async function getOne(params: Request["params"]) {
         username: true,
         name: true,
         artistname: true,
+        songs: true,
+        favorites:true
       }
     });
     if(user!==null) return new CResponse(STATUS_CODES.SUCCESS, { user })
   } catch (error) {
     if (error instanceof PrismaClientKnownRequestError) return new CResponse(STATUS_CODES.BAD_REQUEST, error)
-    return new CResponse(STATUS_CODES.INTERNAL_SERVER_ERROR);
+    return new CResponse(STATUS_CODES.INTERNAL_SERVER_ERROR, error);
   }
   
   // find by id if the bellow querry doesn't find it
@@ -93,12 +95,14 @@ export async function getOne(params: Request["params"]) {
         username: true,
         name: true,
         artistname: true,
+        songs: true,
+        favorites:true
       }
     });
     if(user!==null) return new CResponse(STATUS_CODES.SUCCESS, { user })
   } catch (error) {
     if (error instanceof PrismaClientKnownRequestError) return new CResponse(STATUS_CODES.BAD_REQUEST, error)
-    return new CResponse(STATUS_CODES.INTERNAL_SERVER_ERROR);
+    return new CResponse(STATUS_CODES.INTERNAL_SERVER_ERROR, error);
   }
   
   return new CResponse(STATUS_CODES.NOT_FOUND, "User not found")

@@ -15,34 +15,42 @@ model Users {
   email      String     @unique
   password   String
   photo      String?
+  songs      Songs[]    @relation("owning")
+  favorites  Songs[]
+  comments   Comments[]
   createdAt  DateTime   @default(now())
   updatedAt  DateTime?  @updatedAt
-  songs      Songs[]
-  comments   Comments[]
 
   @@index([name, artistname, username, email])
 }
 
 model Songs {
-  id         String     @id @default(uuid())
-  title      String
-  desciption String?
-  artwork    String?
-  song       String
-  artist     Users      @relation(fields: [usersId], references: [id])
-  usersId    String
-  comments   Comments[]
+  id          String     @id @default(uuid())
+  artist      String
+  title       String
+  description String?
+  artwork     String?
+  filename    String
+  releaseDate DateTime?  @default(now())
+  owner       Users      @relation(name: "owning", fields: [ownerId], references: [id])
+  ownerId     String
+  favoritedBy Users[]
+  comments    Comments[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime?  @updatedAt
 
-  @@index([title])
+  @@index([title, artist])
 }
 
 model Comments {
-  id      String @id @default(uuid())
-  content String
-  author  Users  @relation(fields: [usersId], references: [id])
-  usersId String
-  song    Songs  @relation(fields: [songId], references: [id])
-  songId  String
+  id        String    @id @default(uuid())
+  content   String
+  author    Users     @relation(fields: [usersId], references: [id])
+  usersId   String
+  song      Songs     @relation(fields: [songId], references: [id])
+  songId    String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }
 
 model RefreshTokens {

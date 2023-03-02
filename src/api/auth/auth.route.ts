@@ -9,8 +9,3 @@ router.post("", controller.refreshToken)
 router.post("/signin", controller.login)
 
 router.post("/signout", controller.logout)
-
-// testing protected route
-router.post("/test", authenticateToken, async (req, res) => {
-  res.send({test:"test"})
-});

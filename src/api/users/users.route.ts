@@ -1,7 +1,6 @@
 import { Request, Response, Router } from "express";
 import * as controller from "./users.controller"
 import { uploadFile } from "../../shared/uploadFile";
-import { randomUUID } from "crypto";
 
 export const router = Router();
 
