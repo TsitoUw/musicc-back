@@ -10,8 +10,8 @@ export default function checkPublicDir(){
     mkdirSync(path.join(__dirname, "/public", "artwork"))
   }
   
-  if(!existsSync(path.join(__dirname, '/public', "userpic"))){
-    mkdirSync(path.join(__dirname, "/public", "userpic"))
+  if(!existsSync(path.join(__dirname, '/public', "profilepic"))){
+    mkdirSync(path.join(__dirname, "/public", "profilepic"))
   }
   
   if(!existsSync(path.join(__dirname, '/public', "audio"))){
