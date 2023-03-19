@@ -14,7 +14,7 @@ const app = express()
 
 app.use(cors({origin:'*'}));
 app.use(express.json())
-app.use(express.static('public'))
+app.use(express.static('/'))
 
 app.use("/api/auth", api.auth);
 app.use("/api/users", api.users);
