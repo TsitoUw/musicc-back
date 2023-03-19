@@ -6,7 +6,7 @@ import imageUploader from "./imageUploader";
 export default function fileUpload(req:Request,res:Response,type:"artwork"|"profilepic"|"audio"){
   const fileName = req.params.filename;
   if(type === "audio"){
-    const filePath = path.join(__dirname,"../../public",type,fileName);
+    const filePath = path.join(__dirname,"../../public",fileName);
     res.status(206);
     req.on("data", (chunk)=>{
       appendFileSync(filePath,chunk);

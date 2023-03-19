@@ -12,8 +12,6 @@ const PORT: number = Number(process.env.PORT as string) || 8001;
 
 const app = express()
 
-checkPublicDir();
-
 app.use(cors());
 app.use(express.json())
 app.use(express.static('public'))
