@@ -3,7 +3,7 @@ import * as fs from "fs"
 import path from "path";
 
 export function getSource(type: "audio" | "video", filename: string) {
-  const filePath = `${__dirname}/${filename}`;
+  const filePath = `"/public"/${filename}`;
   if (!fs.existsSync(filePath)) throw new Error(`file: "${filename}" doesn't exist!`);
   const fileSize = fs.statSync(filePath).size
 

@@ -4,7 +4,7 @@ import path from "path";
 
 // Take in the request & filepath, stream the file to the filePath
 export const uploadFile = (req:Request,type:string ,filename:string) => {
-  const filePath = path.join(__dirname, `/${filename}`)
+  const filePath = path.join("/public", `/${filename}`)
   return new Promise((resolve, reject) => {
    const stream = fs.createWriteStream(filePath);
    // With the open - event, data will start being written
