@@ -9,7 +9,7 @@ import { pipeline } from "stream";
 export default function imageUploader(req: Request, res: Response, type: "artwork" | "profilepic", finalname: string): void {
   const pipelineAsync = promisify(pipeline);
   const filename = finalname;
-  const filepath = path.join("/public", filename);
+  const filepath = path.join(__dirname, filename);
   const writable = fs.createWriteStream(filepath);
   req.pipe(writable);
 
@@ -20,7 +20,7 @@ export default function imageUploader(req: Request, res: Response, type: "artwor
 
       image.jpeg({ quality: 70 });
       const processedfname = filename.replace(extname(finalname), ".jpeg")
-      const newfp = path.join("/public", processedfname);
+      const newfp = path.join(__dirname, 'public', type, processedfname);
       await pipelineAsync(image, fs.createWriteStream(newfp))
 
       res.send(processedfname);
