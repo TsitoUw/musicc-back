@@ -1,4 +1,4 @@
-# m1project-assignement-backend
+# Music streaming platform 
 
 install 
 ```npm install```
