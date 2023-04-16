@@ -1,5 +1,7 @@
 # Music streaming platform 
 
+Nothing to see here yet!
+
 install 
 ```npm install```
 
