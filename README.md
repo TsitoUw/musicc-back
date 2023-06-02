@@ -10,7 +10,7 @@ I have not yet created a seeder for this so you have to manually upload songs, a
 install 
 ```npm install```
 
-create a database in your postgresql with it's name (at the end of the db url in the .env)
+create a database in your postgresql with its name (at the end of the db url in the .env)
 then do a migration
 
 migrate
