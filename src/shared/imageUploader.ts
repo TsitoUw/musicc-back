@@ -20,7 +20,7 @@ export default function imageUploader(req: Request, res: Response, type: "artwor
 
       image.jpeg({ quality: 70 });
       const processedfname = filename.replace(extname(finalname), ".jpeg")
-      const newfp = path.join(__dirname, "../../public", processedfname);
+      const newfp = path.join(__dirname, "../../public", type, processedfname);
       await pipelineAsync(image, fs.createWriteStream(newfp))
 
       res.send(processedfname);

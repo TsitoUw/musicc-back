@@ -19,6 +19,6 @@ export async function getAudioFile(req:Request, res:Response){
 }
 
 export async function get(req:Request, res:Response){
-  const responseData = await service.get();
+  const responseData = await service.get(req.query as Request['query']);
   sendResponse(res,responseData);
 }

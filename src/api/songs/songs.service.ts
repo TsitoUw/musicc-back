@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, RequestParamHandler, Response } from "express";
 import fileUpload from "../../shared/fileUpload";
 import { CResponse, STATUS_CODES } from "../../shared/Response";
 import { PrismaClient } from "@prisma/client";
@@ -53,7 +53,36 @@ export function streamAudio(req: Request, res: Response) {
   streamMedia(req, res, "audio", req.params.filename);
 }
 
-export async function get() {
+export async function get(params?: Request['query']) {
+
+  const byUserQuery = {
+    owner: {
+      username: {
+        equals: params?.user
+      }
+    }
+  }
+
+  const seacrchQuery = {
+    OR: [
+      {
+        artist: {
+          contains: params?.search as string,
+          mode: 'insensitive',
+        }
+      },
+      {
+        title: {
+          contains: params?.search as string,
+          mode: 'insensitive',
+        }
+      },
+
+    ],
+  }
+
+  const query = params?.search ? seacrchQuery : params?.user ? byUserQuery : undefined
+
   try {
     const songs = await prisma.songs.findMany({
       select: {
@@ -71,6 +100,10 @@ export async function get() {
         },
         _count: { select: { comments: true, favoritedBy: true } }
       },
+      where: {
+
+        ...query as any
+      }
     });
     return new CResponse(STATUS_CODES.SUCCESS, { songs });
   } catch (error) {

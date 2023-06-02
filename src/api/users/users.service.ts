@@ -56,9 +56,8 @@ export async function signup(body: Request["body"]) {
 }
 
 export async function getOne(params: Request["params"]) {
-  if (!isValidString(params.uid)) return new CResponse(STATUS_CODES.EXPECTATION_FAILED, "No user identifiend given in params");
-  // uid mean unique identifier wich is id/username/email in this case
-  // but we only need id/username here
+  if (!isValidString(params.uid)) return new CResponse(STATUS_CODES.EXPECTATION_FAILED, "No user identifient given in params");
+  // uid mean unique identifier wich is id/username in this case
   const uid = params.uid;
   let user: {} | null;
   // find by username (slug)
@@ -72,9 +71,7 @@ export async function getOne(params: Request["params"]) {
         photo: true,
         username: true,
         name: true,
-        artistname: true,
-        songs: true,
-        favorites:true
+        artistname: true
       }
     });
     if(user!==null) return new CResponse(STATUS_CODES.SUCCESS, { user })
@@ -94,9 +91,7 @@ export async function getOne(params: Request["params"]) {
         photo: true,
         username: true,
         name: true,
-        artistname: true,
-        songs: true,
-        favorites:true
+        artistname: true
       }
     });
     if(user!==null) return new CResponse(STATUS_CODES.SUCCESS, { user })
@@ -105,5 +100,5 @@ export async function getOne(params: Request["params"]) {
     return new CResponse(STATUS_CODES.INTERNAL_SERVER_ERROR, error);
   }
   
-  return new CResponse(STATUS_CODES.NOT_FOUND, "User not found")
+  return new CResponse(STATUS_CODES.BAD_REQUEST, "User not found")
 }
