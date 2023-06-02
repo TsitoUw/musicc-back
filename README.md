@@ -1,6 +1,7 @@
 # Music streaming platform 
 
-Nothing to see here yet!
+Api for the music streaming app. my goal with this was to learn all the underlaying conceptes of some library,
+I'm using less as possible of them.
 
 install 
 ```npm install```
