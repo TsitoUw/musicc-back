@@ -14,7 +14,11 @@ create a database in your postgresql with its name (at the end of the db url in 
 then do a migration
 
 migrate
-```npx prisma migrate dev --name name```
+```bash
+npx prisma migrate dev --name name
+```
 
 launch
-```npm run dev```
+```bash
+npm run dev
+```
